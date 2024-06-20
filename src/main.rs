@@ -47,3 +47,10 @@ fn fingerprint_equality() {
     assert_eq!(fingerprint2, fingerprint3);
     assert_eq!(fingerprint1, fingerprint3);
 }
+
+#[test]
+fn fuzzy_match() {
+    let fingerprint1 = Fingerprint::new("original.txt");
+    let fingerprint2 = Fingerprint::new("variation1.txt");
+    assert_eq!(fingerprint1, fingerprint2);
+}

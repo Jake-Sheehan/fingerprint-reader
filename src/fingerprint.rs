@@ -80,15 +80,24 @@ impl PartialEq for Fingerprint {
             return false;
         }
 
+        let epsilon: f32 = 0.1;
+        let mut matches: u32 = 0;
+
         for row in 0..self.rows {
             for col in 0..self.cols {
-                if self.data[row][col] != other.data[row][col] {
-                    return false;
+                if self.data[row][col] == other.data[row][col] {
+                    matches += 1;
                 }
             }
         }
 
-        return true;
+        let accuracy: f32 = (matches as f32) / (self.get_number_of_pixels() as f32);
+
+        if accuracy > 1.0 - epsilon {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
